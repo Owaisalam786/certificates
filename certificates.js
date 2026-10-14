@@ -40,4 +40,18 @@ window.CERTIFICATES = [
     file: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM%20(1).jpeg",
     verificationUrl: ""
   }
+  ,
+  {
+    id: "job-ready-ai-powered-data-analytics-course",
+    title: "Ultimate Job-Ready AI-Powered Data Analytics Course",
+    issuer: "Not specified",
+    category: "Data Analytics",
+    issueDate: "",
+    credentialId: "",
+    description: "Certificate for the Ultimate Job-Ready AI-Powered Data Analytics Course.",
+    skills: ["Data Analytics", "AI-powered analytics"],
+    image: "",
+    file: "/certificates/Ultimate_Job-Ready_AI-Powered_Data_Analytics_Course__Certificate.pdf",
+    verificationUrl: ""
+  }
 ];
