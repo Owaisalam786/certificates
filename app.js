@@ -1,7 +1,22 @@
 (() => {
   "use strict";
   const $ = (selector) => document.querySelector(selector);
-  const allCertificates = Array.isArray(window.CERTIFICATES) ? window.CERTIFICATES : [];
+  const fallbackCertificates = [{
+    id: "softpro-generative-agentic-ai-workshop-2026",
+    title: "Generative AI & Agentic AI Workshop",
+    issuer: "Softpro India",
+    category: "Generative AI",
+    issueDate: "2026-10-12",
+    credentialId: "SP-CERT-2026-00998",
+    description: "Certificate of participation in a workshop focused on Generative AI and Agentic AI.",
+    skills: ["Generative AI", "Agentic AI", "AI fundamentals"],
+    image: "",
+    file: "/certificates/Owais-Alam-SP-CERT-2026-00998.pdf",
+    verificationUrl: ""
+  }];
+  const allCertificates = Array.isArray(window.CERTIFICATES) && window.CERTIFICATES.length
+    ? window.CERTIFICATES
+    : fallbackCertificates;
   const config = window.SITE_CONFIG || {};
   const grid = $("#certificate-grid");
   const search = $("#search-input");
