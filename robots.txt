@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Add a sitemap URL after the final Vercel domain is known.
