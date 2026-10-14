@@ -1,0 +1,65 @@
+name: Convert certificate PDFs to JPG previews
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "certificates/*.pdf"
+      - ".github/workflows/convert-pdf-certificates.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install PDF and image tools
+        run: pip install pymupdf pillow
+      - name: Convert each PDF page to JPG
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import fitz
+          from PIL import Image
+
+          source_dir = Path("certificates")
+          output_dir = Path("images/certificates")
+          output_dir.mkdir(parents=True, exist_ok=True)
+
+          pdfs = sorted(source_dir.glob("*.pdf"))
+          if not pdfs:
+              raise SystemExit("No certificate PDFs found in certificates/")
+
+          for pdf_path in pdfs:
+              document = fitz.open(pdf_path)
+              for page_index, page in enumerate(document):
+                  pixmap = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
+                  image = Image.frombytes("RGB", (pixmap.width, pixmap.height), pixmap.samples)
+                  image.thumbnail((1800, 1800), Image.Resampling.LANCZOS)
+                  suffix = "" if page_index == 0 else f"-page-{page_index + 1}"
+                  output_path = output_dir / f"{pdf_path.stem}{suffix}.jpg"
+                  image.save(output_path, "JPEG", quality=88, optimize=True, progressive=True)
+                  print(f"Created {output_path} ({image.width}x{image.height})")
+              document.close()
+          PY
+      - name: Commit generated JPG previews
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/certificates/*.jpg
+          if git diff --cached --quiet; then
+            echo "JPG previews are already up to date."
+          else
+            git commit -m "Convert certificate PDFs to JPG previews"
+            git push origin HEAD:main
+          fi
