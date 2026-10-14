@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Explore Owais Alam's certificate portfolio — a curated record of learning, technical training, and professional development.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Owais Alam — Certificate Portfolio">
+  <meta property="og:description" content="A curated collection of certificates, technical training, and continuous learning.">
+  <meta property="og:image" content="/og-preview.svg">
+  <meta property="og:site_name" content="Owais Alam">
+  <title>Owais Alam — Certificate Portfolio</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/site-config.js" defer></script>
+  <script src="/certificates.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Owais Alam home">
+        <span class="brand-mark">OA<span>.</span></span>
+        <span class="brand-copy"><strong>Owais Alam</strong><small>Certificate portfolio</small></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
+      <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#certificates">Certificates</a><a href="#categories">Categories</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <a class="nav-cta" href="#certificates">Explore certificates <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section" id="home">
+      <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> A record of continuous learning</div>
+          <h1>My learning journey,<br><span>verified.</span></h1>
+          <p class="hero-description">A curated collection of my professional certificates, technical training, and continuous learning achievements — all in one place.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#certificates">Explore certificates <span aria-hidden="true">↘</span></a><a class="button button-secondary" href="#about">A little about me</a></div>
+          <div class="hero-meta"><span class="meta-avatar">OA</span><span>Organized with purpose.</span><span class="meta-divider"></span><span>Made to share</span></div>
+        </div>
+        <div class="hero-art" aria-label="Decorative illustration of a certificate">
+          <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
+          <div class="certificate-art">
+            <div class="art-topline"><span class="art-seal">✳</span><span>LEARNING RECORD</span><span class="art-dots">•••</span></div>
+            <div class="art-rule"></div><div class="art-label">CERTIFICATE OF</div><div class="art-title">Achievement</div>
+            <div class="art-skeleton wide"></div><div class="art-skeleton medium"></div><div class="art-skeleton short"></div>
+            <div class="art-footer"><div><div class="signature">Owais Alam</div><div class="art-caption">LEARNER</div></div><div class="art-stamp">OA</div></div>
+          </div>
+          <div class="floating-chip chip-verified"><span>✓</span><div><strong>Learning, documented</strong><small>One step at a time</small></div></div>
+          <div class="floating-chip chip-folder"><span class="folder-icon">▤</span><div><strong>One collection</strong><small>Easy to explore</small></div></div>
+          <div class="art-spark spark-a">✳</div><div class="art-spark spark-b">✦</div>
+        </div>
+      </div>
+      <div class="container hero-bottom"><div class="hero-bottom-line"></div><span>LEARN · GROW · KEEP GOING</span><span class="scroll-note">Scroll to explore <span aria-hidden="true">↓</span></span></div>
+    </section>
+
+    <section class="collection section" id="certificates">
+      <div class="container">
+        <div class="section-heading">
+          <div><div class="eyebrow"><span class="eyebrow-dot"></span> THE COLLECTION</div><h2>Proof of progress.</h2><p class="section-intro">Every certificate marks a little more knowledge gained. Explore the collection below.</p></div>
+          <div class="collection-count"><strong id="total-count">0</strong><span>certificates listed</span></div>
+        </div>
+        <div class="toolbar">
+          <label class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only">Search certificates</span><input id="search-input" type="search" placeholder="Search title, issuer, or topic…" autocomplete="off"><kbd>⌘ K</kbd></label>
+          <div class="toolbar-filters">
+            <label class="select-wrap"><span class="sr-only">Filter by category</span><select id="category-filter"><option value="">All categories</option></select><span aria-hidden="true">⌄</span></label>
+            <label class="select-wrap"><span class="sr-only">Sort certificates</span><select id="sort-select"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select><span aria-hidden="true">⌄</span></label>
+          </div>
+        </div>
+        <div class="filter-status"><p id="results-label" aria-live="polite">Loading certificates…</p><button id="clear-filters" class="text-button" type="button" hidden>Clear filters <span aria-hidden="true">×</span></button></div>
+        <div class="certificate-grid" id="certificate-grid"></div>
+        <div class="empty-state" id="empty-state" hidden><div class="empty-icon">⌕</div><h3 id="empty-title">Your next discovery awaits.</h3><p id="empty-copy">There are no certificates here yet. Check back soon.</p><button class="button button-secondary" id="empty-reset" type="button">Reset search and filters</button></div>
+        <div class="collection-note"><span class="note-icon">✳</span><p><strong>A growing collection.</strong> New certificates can be added whenever there’s something new to share.</p></div>
+      </div>
+    </section>
+
+    <section class="categories section" id="categories">
+      <div class="container categories-inner">
+        <div class="section-heading compact-heading"><div><div class="eyebrow"><span class="eyebrow-dot"></span> EXPLORE BY TOPIC</div><h2>Follow your curiosity.</h2></div><p class="category-hint">Choose a topic to filter the certificate collection.</p></div>
+        <div class="category-list" id="category-list"></div>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="container about-grid">
+        <div class="about-visual"><div class="about-monogram">OA<span>.</span></div><div class="about-orbit"></div><div class="about-tag tag-top">Curiosity first</div><div class="about-tag tag-bottom">Always learning ↗</div></div>
+        <div class="about-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> A LITTLE ABOUT ME</div><h2>Progress over perfection.</h2><p>I’m Owais Alam. This space brings together certificates and learning milestones from my ongoing journey of professional development.</p><p>I believe learning is most valuable when it keeps going. This portfolio is a simple, transparent way to organize what I’ve studied and share it with others.</p><a class="inline-link" href="#contact">Connect with me <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="container contact-panel"><div class="contact-orb"></div><div class="contact-copy"><div class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span> SAY HELLO</div><h2>Good things start<br>with a conversation.</h2><p>Want to connect, share an opportunity, or talk about learning? Find me through the links below.</p></div><div class="contact-links" id="contact-links"></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><a class="footer-brand" href="#home">OA<span>.</span> <strong>Owais Alam</strong></a><span>Built to document the journey, not just the destination.</span><a class="back-top" href="#home">Back to top ↑</a></div></footer>
+
+  <dialog class="certificate-dialog" id="certificate-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-header"><div><span class="dialog-eyebrow">CERTIFICATE DETAILS</span><h2 id="dialog-title">Certificate</h2></div><button class="icon-button" id="dialog-close" type="button" aria-label="Close certificate details">×</button></div>
+    <div class="dialog-body"><div class="document-stage" id="document-stage"></div><div class="dialog-details" id="dialog-details"></div></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
