@@ -1,10 +1,14 @@
-name: Convert certificate PDFs to JPG previews
+name: Convert all certificate files to JPG previews
 
 on:
   push:
     branches: [main]
     paths:
       - "certificates/*.pdf"
+      - "certificates/*.jpeg"
+      - "certificates/*.jpg"
+      - "certificates/*.png"
+      - "certificates/*.webp"
       - ".github/workflows/convert-pdf-certificates.yml"
   workflow_dispatch:
 
@@ -25,10 +29,11 @@ jobs:
           python-version: "3.12"
       - name: Install PDF and image tools
         run: pip install pymupdf pillow
-      - name: Convert each PDF page to JPG
+      - name: Convert all four certificate sources to JPG
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           import fitz
           from PIL import Image
 
@@ -36,21 +41,38 @@ jobs:
           output_dir = Path("images/certificates")
           output_dir.mkdir(parents=True, exist_ok=True)
 
+          def safe_stem(path):
+              stem = path.stem
+              stem = re.sub(r"\s*\((\d+)\)$", r"-\1", stem)
+              stem = re.sub(r"[^A-Za-z0-9_-]+", "-", stem)
+              return re.sub(r"-+", "-", stem).strip("-")
+
           pdfs = sorted(source_dir.glob("*.pdf"))
-          if not pdfs:
-              raise SystemExit("No certificate PDFs found in certificates/")
+          image_files = sorted(
+              path for ext in ("*.jpeg", "*.jpg", "*.png", "*.webp")
+              for path in source_dir.glob(ext)
+          )
+          if len(pdfs) + len(image_files) < 1:
+              raise SystemExit("No certificate PDFs or images found in certificates/")
 
           for pdf_path in pdfs:
-              document = fitz.open(pdf_path)
-              for page_index, page in enumerate(document):
-                  pixmap = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
-                  image = Image.frombytes("RGB", (pixmap.width, pixmap.height), pixmap.samples)
+              with fitz.open(pdf_path) as document:
+                  for page_index, page in enumerate(document):
+                      pixmap = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
+                      image = Image.frombytes("RGB", (pixmap.width, pixmap.height), pixmap.samples)
+                      image.thumbnail((1800, 1800), Image.Resampling.LANCZOS)
+                      suffix = "" if page_index == 0 else f"-page-{page_index + 1}"
+                      output_path = output_dir / f"{pdf_path.stem}{suffix}.jpg"
+                      image.save(output_path, "JPEG", quality=90, optimize=True, progressive=True)
+                      print(f"Converted PDF page: {output_path}")
+
+          for source_path in image_files:
+              with Image.open(source_path) as source:
+                  image = source.convert("RGB")
                   image.thumbnail((1800, 1800), Image.Resampling.LANCZOS)
-                  suffix = "" if page_index == 0 else f"-page-{page_index + 1}"
-                  output_path = output_dir / f"{pdf_path.stem}{suffix}.jpg"
-                  image.save(output_path, "JPEG", quality=88, optimize=True, progressive=True)
-                  print(f"Created {output_path} ({image.width}x{image.height})")
-              document.close()
+                  output_path = output_dir / f"{safe_stem(source_path)}.jpg"
+                  image.save(output_path, "JPEG", quality=90, optimize=True, progressive=True)
+                  print(f"Converted image: {source_path} -> {output_path}")
           PY
       - name: Commit generated JPG previews
         run: |
@@ -60,6 +82,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "JPG previews are already up to date."
           else
-            git commit -m "Convert certificate PDFs to JPG previews"
+            git commit -m "Convert all certificate files to JPG previews"
             git push origin HEAD:main
           fi
