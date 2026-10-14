@@ -49,7 +49,7 @@
     const file = validUrl(cert.file);
     if (image) return '<img src="'+escapeHTML(image)+'" alt="Preview of '+escapeHTML(cert.title)+'" loading="lazy" onerror="this.outerHTML=\''+placeholder(cert.title).replace(/'/g,"&#39;")+'\'">';
     if (file && /\.(png|jpe?g|webp|gif|avif)(\?|#|$)/i.test(file)) return '<img src="'+escapeHTML(file)+'" alt="Preview of '+escapeHTML(cert.title)+'" loading="lazy" onerror="this.outerHTML=\''+placeholder(cert.title).replace(/'/g,"&#39;")+'\'">';
-    if (file && /\\.pdf(\\?|#|$)/i.test(file)) return '<div class="pdf-preview-card" aria-label="PDF certificate preview"><div class="pdf-preview-sheet"><span class="pdf-preview-seal">✦</span><strong>'+escapeHTML(cert.title)+'</strong><span class="pdf-preview-rule"></span><span class="pdf-preview-rule short"></span><span class="pdf-preview-rule"></span><small>OPEN CERTIFICATE TO VIEW PDF</small></div></div>';
+    if (file && /\.pdf(\?|#|$)/i.test(file)) return '<div class="pdf-preview-card" aria-label="PDF certificate preview"><div class="pdf-preview-sheet"><span class="pdf-preview-seal">✦</span><strong>'+escapeHTML(cert.title)+'</strong><span class="pdf-preview-rule"></span><span class="pdf-preview-rule short"></span><span class="pdf-preview-rule"></span><small>OPEN CERTIFICATE TO VIEW PDF</small></div></div>';
     return placeholder(cert.title);
   };
   const filteredCertificates = () => {
@@ -117,8 +117,8 @@
     const file=validUrl(cert.file), image=validUrl(cert.image);
     const isPdf=file && /\.pdf(\?|#|$)/i.test(file);
     const imageFile=file && /\.(png|jpe?g|webp|gif|avif)(\?|#|$)/i.test(file);
-    if(isPdf) stage.innerHTML='<iframe title="PDF certificate preview" src="'+escapeHTML(file)+'#view=FitH" loading="lazy"></iframe>';
-    else if(image || imageFile) stage.innerHTML='<img src="'+escapeHTML(imageFile?file:image)+'" alt="Full certificate: '+escapeHTML(cert.title)+'" onerror="this.outerHTML=\'<div class=&quot;empty-state&quot;><h3>Preview unavailable</h3><p>Open the original file using the link beside this preview.</p></div>\'">';
+    if(image) stage.innerHTML='<img src="'+escapeHTML(image)+'" alt="Full certificate: '+escapeHTML(cert.title)+'" onerror="this.outerHTML=\\'<div class=&quot;empty-state&quot;><h3>Preview unavailable</h3><p>Open the original file using the link beside this preview.</p></div>\\'">';
+    else if(isPdf) stage.innerHTML='<iframe title="PDF certificate preview" src="'+escapeHTML(file)+'#view=FitH" loading="lazy"></iframe>';
     else stage.innerHTML=placeholder(cert.title)+'<p class="detail-description">Add a preview image or original file path to show the certificate here.</p>';
     const rows = [
       ["Issuing organization",cert.issuer],["Category",cert.category],["Issue date",formatDate(cert.issueDate)],["Credential ID",cert.credentialId]
