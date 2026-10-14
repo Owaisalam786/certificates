@@ -13,5 +13,31 @@ window.CERTIFICATES = [
     image: "",
     file: "/certificates/Owais-Alam-SP-CERT-2026-00998.pdf",
     verificationUrl: ""
+  },
+  {
+    id: "new-certificate-upload-1",
+    title: "Certificate",
+    issuer: "See certificate image",
+    category: "Other",
+    issueDate: "",
+    credentialId: "",
+    description: "Recently uploaded certificate image.",
+    skills: [],
+    image: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM.jpeg",
+    file: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM.jpeg",
+    verificationUrl: ""
+  },
+  {
+    id: "new-certificate-upload-2",
+    title: "Certificate",
+    issuer: "See certificate image",
+    category: "Other",
+    issueDate: "",
+    credentialId: "",
+    description: "Recently uploaded certificate image.",
+    skills: [],
+    image: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM%20(1).jpeg",
+    file: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM%20(1).jpeg",
+    verificationUrl: ""
   }
 ];
