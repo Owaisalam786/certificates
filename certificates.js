@@ -1,6 +1,4 @@
-/* Real certificates displayed in the public portfolio.
-   Original files live in /certificates/. JPG previews are generated in /images/certificates/.
-   Keep details accurate and use only real credentials. */
+/* Four certificate entries; all gallery previews use JPG files generated into /images/certificates/. */
 window.CERTIFICATES = [
   {
     id: "softpro-generative-agentic-ai-workshop-2026",
@@ -12,33 +10,36 @@ window.CERTIFICATES = [
     description: "Certificate of participation in a workshop focused on Generative AI and Agentic AI.",
     skills: ["Generative AI", "Agentic AI", "AI fundamentals"],
     image: "/images/certificates/Owais-Alam-SP-CERT-2026-00998.jpg",
-    file: "/certificates/Owais-Alam-SP-CERT-2026-00998.pdf",
-    verificationUrl: ""
+    file: "/images/certificates/Owais-Alam-SP-CERT-2026-00998.jpg",
+    originalFile: "/certificates/Owais-Alam-SP-CERT-2026-00998.pdf",
+    verificationUrl: "https://trainingatsoftpro.com/certificate-verification/"
   },
   {
-    id: "new-certificate-upload-1",
+    id: "certificate-upload-2",
     title: "Certificate",
-    issuer: "See certificate image",
+    issuer: "See original certificate",
     category: "Other",
     issueDate: "",
     credentialId: "",
-    description: "Recently uploaded certificate image.",
+    description: "Certificate image supplied by Owais Alam.",
     skills: [],
-    image: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM.jpeg",
-    file: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM.jpeg",
+    image: "/images/certificates/WhatsApp-Image-2026-10-14-at-11-21-17-AM.jpg",
+    file: "/images/certificates/WhatsApp-Image-2026-10-14-at-11-21-17-AM.jpg",
+    originalFile: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM.jpeg",
     verificationUrl: ""
   },
   {
-    id: "new-certificate-upload-2",
+    id: "certificate-upload-3",
     title: "Certificate",
-    issuer: "See certificate image",
+    issuer: "See original certificate",
     category: "Other",
     issueDate: "",
     credentialId: "",
-    description: "Recently uploaded certificate image.",
+    description: "Certificate image supplied by Owais Alam.",
     skills: [],
-    image: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM%20(1).jpeg",
-    file: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM%20(1).jpeg",
+    image: "/images/certificates/WhatsApp-Image-2026-10-14-at-11-21-17-AM-1.jpg",
+    file: "/images/certificates/WhatsApp-Image-2026-10-14-at-11-21-17-AM-1.jpg",
+    originalFile: "/certificates/WhatsApp%20Image%202026-10-14%20at%2011.21.17%20AM%20(1).jpeg",
     verificationUrl: ""
   },
   {
@@ -51,7 +52,8 @@ window.CERTIFICATES = [
     description: "Certificate for the Ultimate Job-Ready AI-Powered Data Analytics Course.",
     skills: ["Data Analytics", "AI-powered analytics"],
     image: "/images/certificates/Ultimate_Job-Ready_AI-Powered_Data_Analytics_Course__Certificate.jpg",
-    file: "/certificates/Ultimate_Job-Ready_AI-Powered_Data_Analytics_Course__Certificate.pdf",
+    file: "/images/certificates/Ultimate_Job-Ready_AI-Powered_Data_Analytics_Course__Certificate.jpg",
+    originalFile: "/certificates/Ultimate_Job-Ready_AI-Powered_Data_Analytics_Course__Certificate.pdf",
     verificationUrl: ""
   }
 ];
