@@ -10,8 +10,9 @@
     credentialId: "SP-CERT-2026-00998",
     description: "Certificate of participation in a workshop focused on Generative AI and Agentic AI.",
     skills: ["Generative AI", "Agentic AI", "AI fundamentals"],
-    image: "",
-    file: "/certificates/Owais-Alam-SP-CERT-2026-00998.pdf",
+    image: "/images/certificates/Owais-Alam-SP-CERT-2026-00998.jpg",
+    file: "/images/certificates/Owais-Alam-SP-CERT-2026-00998.jpg",
+    originalFile: "/certificates/Owais-Alam-SP-CERT-2026-00998.pdf",
     verificationUrl: ""
   }];
   const allCertificates = Array.isArray(window.CERTIFICATES) && window.CERTIFICATES.length
