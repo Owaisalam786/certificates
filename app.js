@@ -49,7 +49,7 @@
     const file = validUrl(cert.file);
     if (image) return '<img src="'+escapeHTML(image)+'" alt="Preview of '+escapeHTML(cert.title)+'" loading="lazy" onerror="this.outerHTML=\''+placeholder(cert.title).replace(/'/g,"&#39;")+'\'">';
     if (file && /\.(png|jpe?g|webp|gif|avif)(\?|#|$)/i.test(file)) return '<img src="'+escapeHTML(file)+'" alt="Preview of '+escapeHTML(cert.title)+'" loading="lazy" onerror="this.outerHTML=\''+placeholder(cert.title).replace(/'/g,"&#39;")+'\'">';
-    if (file && /\.pdf(\?|#|$)/i.test(file)) return '<iframe title="Preview of '+escapeHTML(cert.title)+'" src="'+escapeHTML(file)+'#page=1&toolbar=0&navpanes=0&scrollbar=0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>';
+    if (file && /\\.pdf(\\?|#|$)/i.test(file)) return '<div class="pdf-preview-card" aria-label="PDF certificate preview"><div class="pdf-preview-sheet"><span class="pdf-preview-seal">✦</span><strong>'+escapeHTML(cert.title)+'</strong><span class="pdf-preview-rule"></span><span class="pdf-preview-rule short"></span><span class="pdf-preview-rule"></span><small>OPEN CERTIFICATE TO VIEW PDF</small></div></div>';
     return placeholder(cert.title);
   };
   const filteredCertificates = () => {
